@@ -13,6 +13,8 @@ import CoreData
 class NetworkCalls : NetworkProtocol {
     var movies = [MovieClass]()
     var movieResult = MovieResults()
+    var posts = [Post]()
+    var comments = [Comment]()
     
     
     var movieTrailers : [MovieTrailer] = [MovieTrailer]()
@@ -156,33 +158,7 @@ class NetworkCalls : NetworkProtocol {
         
     }
     
-//    func saveData(moviesArray : [MovieClass])  {
-//        let appDelegete = UIApplication.shared.delegate as! AppDelegate
-//        let managedContext = appDelegete.persistentContainer.viewContext
-//        
-//        let entity = NSEntityDescription.entity(forEntityName: "Movie", in: managedContext)
-//        
-//        
-//        
-//        for movieInArray in moviesArray{
-//            var movie = NSManagedObject(entity: entity!, insertInto: managedContext)
-//            movie.setValue(movieInArray.id, forKey: "id")
-//            movie.setValue(movieInArray.original_title, forKey: "originalTitle")
-//            movie.setValue(movieInArray.backdrop_path, forKey: "backDropPath")
-//            movie.setValue(movieInArray.overview, forKey: "overview")
-//            movie.setValue(movieInArray.poster_path, forKey: "posterPath")
-//            movie.setValue(movieInArray.release_date, forKey: "releaseDate")
-//            movie.setValue(movieInArray.vote_average, forKey: "rating")
-//            
-//            
-//            do {
-//                try managedContext.save()
-//            }catch let error as NSError{
-//                print(error)
-//                
-//            }
-//        }
-//    }
+
     
     func fetchData() ->[MovieClass] {
         let appDelegete = UIApplication.shared.delegate as! AppDelegate
@@ -258,5 +234,59 @@ class NetworkCalls : NetworkProtocol {
         return false
         
     }
+    
+    func getPosts(url : String , postsPresenter: PostsAndCommentsPresenterProtocol) -> [Post] {
+        
+        
+        Alamofire.request(url).responseJSON{ (response) in
+            //print(response)
+            
+            let jsonData = response.data
+            do{
+                
+                self.posts = try JSONDecoder().decode([Post].self, from: jsonData!)
+                self.comments = self.getComments(url: "https://jsonplaceholder.typicode.com/comments", postsPresenter: postsPresenter)
+                print(self.comments.count)
+                
+                
+            } catch {
+                print("error")
+            }
+            
+        }
+        
+        return posts
+        
+    }
+    
+    func getComments(url :String , postsPresenter: PostsAndCommentsPresenterProtocol) -> [Comment] {
+        //var comments = [Comment]()
+        
+        Alamofire.request(url).responseJSON{ (response) in
+            //print(response)
+            
+            let jsonData = response.data
+            do{
+                print(self.posts.count)
+                self.comments = try JSONDecoder().decode([Comment].self, from: jsonData!)
+                for post in self.posts{
+                    
+                    post.comments = self.comments.filter {
+                        $0.postId == post.id
+                    }
+                }
+                print("helooo \(self.posts[0].comments.count)")
+                postsPresenter.updateUI(posts: self.posts)
+               
+                
+            } catch {
+                print("error")
+            }
+            
+        }
+        
+        return comments
+    }
+    
     
 }

@@ -24,6 +24,7 @@ class MovieClass : Decodable{
     
     var backdrop_path:String?
     var original_title : String
+   //lazy var trailers = [MovieTrailer]()
     
     
     

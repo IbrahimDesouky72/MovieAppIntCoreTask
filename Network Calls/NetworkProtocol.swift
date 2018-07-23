@@ -17,5 +17,7 @@ protocol NetworkProtocol {
     func getMovieTrailer(movieId : Int32 ,presenter : MovieDetailsPresenterPrtocol)
     func getMovieReviews(movieId : Int32 , presenter : MovieReviewsPresenterProtocol)
      func deleteRecord(movieName : String) -> Bool
+    func getPosts(url : String , postsPresenter : PostsAndCommentsPresenterProtocol) -> [Post];
+    func getComments(url :String , postsPresenter: PostsAndCommentsPresenterProtocol) -> [Comment]
     
 }

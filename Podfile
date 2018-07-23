@@ -8,6 +8,7 @@ pod 'Alamofire', '~> 4.7'
 pod 'SDWebImage', '~> 4.0'
 pod 'lottie-ios'
 pod 'Cosmos', '~> 15.0'
+pod 'CarbonKit'
 
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
