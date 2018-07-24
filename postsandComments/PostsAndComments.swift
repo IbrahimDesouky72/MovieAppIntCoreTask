@@ -13,7 +13,8 @@ class PostsAndComments: UIViewController , PostsAndCommentsProtocol {
     var movies = [MovieClass]()
     var posts = [Post]()
     var isSecondPressed = false
-    var v : UIView = UIView()
+   // var v : UIView = UIView()
+    var storedOffsets = [Int: CGFloat]()
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -83,49 +84,34 @@ extension PostsAndComments :UICollectionViewDelegate, UICollectionViewDataSource
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let collectionViewCell = cell as? PostsCollectionCell else { return }
+        
+        collectionViewCell.setTableViewDataSourceDelegate(self, forRow: indexPath.row)
+        collectionViewCell.collectionViewOffset = storedOffsets[indexPath.row] ?? 0
+        
+        
+    }
+    
+    
+    
     
     
     
     
 }
 
-//extension PostsAndComments : UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            //print("11111111")
-//            return posts.count
-//
-//    }
-//
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 400.0
-//    }
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cell.contentView.backgroundColor = UIColor.clear
-//
-//        let whiteRoundedView : UIView = UIView(frame: CGRect(x: 10, y: 10, width: self.view.frame.size.width - 20, height: 350))
-//
-//        whiteRoundedView.layer.backgroundColor = CGColor(colorSpace: CGColorSpaceCreateDeviceRGB(), components: [1.0, 1.0, 1.0, 1.0])
-//        whiteRoundedView.layer.masksToBounds = false
-//        whiteRoundedView.layer.cornerRadius = 2.0
-//        whiteRoundedView.layer.shadowOffset = CGSize(width: -1, height: 1)
-//        whiteRoundedView.layer.shadowOpacity = 0.2
-//
-//        cell.contentView.addSubview(whiteRoundedView)
-//        cell.contentView.sendSubview(toBack: whiteRoundedView)
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "PostsCell", for: indexPath) as! PostsCell
-//            cell.postText.text = posts[indexPath.row].body
-//           // cell.postText.sizeToFit()
-//
-//            return cell
-//
-//    }
-//
-//
-//
-//
-//}
+extension PostsAndComments :UITableViewDelegate , UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts[tableView.tag].comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
+        cell.comment.text = posts[tableView.tag].comments[indexPath.row].body
+        return cell
+    }
+    
+    
+    
+}
