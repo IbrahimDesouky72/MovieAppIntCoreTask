@@ -2,6 +2,7 @@ PODS:
   - Alamofire (4.7.1)
   - CarbonKit (2.2.2)
   - Cosmos (15.0.0)
+  - Kingfisher (4.8.0)
   - lottie-ios (2.5.0)
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
@@ -11,6 +12,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.7)
   - CarbonKit
   - Cosmos (~> 15.0)
+  - Kingfisher (~> 4.0)
   - lottie-ios
   - SDWebImage (~> 4.0)
 
@@ -19,6 +21,7 @@ SPEC REPOS:
     - Alamofire
     - CarbonKit
     - Cosmos
+    - Kingfisher
     - lottie-ios
     - SDWebImage
 
@@ -26,9 +29,10 @@ SPEC CHECKSUMS:
   Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
   CarbonKit: 0dec4738fa489b4c043a5f850c27fd0dbefb57cc
   Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
   lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
 
-PODFILE CHECKSUM: 6f25fc4d5a3b2a21ced9c53c2eb6439b98b176e2
+PODFILE CHECKSUM: 9d571da5f480302c4aaf765d7a5e10b25f566bc1
 
 COCOAPODS: 1.5.0

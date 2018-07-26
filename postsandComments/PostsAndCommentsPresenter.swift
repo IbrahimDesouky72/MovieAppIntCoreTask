@@ -20,7 +20,8 @@ class PostsAndCommentsPresenter : PostsAndCommentsPresenterProtocol {
     
     func getPosts(url : String){
         var posts = [Post]()
-        posts = networkCalls.getPosts(url: "https://jsonplaceholder.typicode.com/posts", postsPresenter: self)
+        print("presenter get posts")
+        posts = networkCalls.getPosts(url: url, postsPresenter: self)
         //print(posts[0].comments.count)
         
     }

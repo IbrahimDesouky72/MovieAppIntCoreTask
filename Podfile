@@ -9,6 +9,7 @@ pod 'SDWebImage', '~> 4.0'
 pod 'lottie-ios'
 pod 'Cosmos', '~> 15.0'
 pod 'CarbonKit'
+pod 'Kingfisher', '~> 4.0'
 
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|

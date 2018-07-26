@@ -237,7 +237,7 @@ class NetworkCalls : NetworkProtocol {
     
     func getPosts(url : String , postsPresenter: PostsAndCommentsPresenterProtocol) -> [Post] {
         
-        
+        print("network get posts ")
         Alamofire.request(url).responseJSON{ (response) in
             //print(response)
             
@@ -250,7 +250,7 @@ class NetworkCalls : NetworkProtocol {
                 
                 
             } catch {
-                print("error")
+                print("error posts")
             }
             
         }
@@ -280,7 +280,7 @@ class NetworkCalls : NetworkProtocol {
                
                 
             } catch {
-                print("error")
+                print("error comments")
             }
             
         }

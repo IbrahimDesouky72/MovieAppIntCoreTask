@@ -55,6 +55,7 @@
 		C44EC66F2102547600D46FA0 /* PostsAndCommentsPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44EC66E2102547600D46FA0 /* PostsAndCommentsPresenterProtocol.swift */; };
 		C44EC67121025E6E00D46FA0 /* PostsResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C44EC67021025E6E00D46FA0 /* PostsResult.swift */; };
 		C45FFE422104C2B000C1462C /* PostsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45FFE412104C2B000C1462C /* PostsCollectionCell.swift */; };
+		C46DCB7B21094A6A00739F2D /* MovieDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46DCB7A21094A6A00739F2D /* MovieDetailsCell.swift */; };
 		C46E8E5321000155009AB829 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46E8E5221000155009AB829 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -132,6 +133,7 @@
 		C44EC66E2102547600D46FA0 /* PostsAndCommentsPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsAndCommentsPresenterProtocol.swift; sourceTree = "<group>"; };
 		C44EC67021025E6E00D46FA0 /* PostsResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsResult.swift; sourceTree = "<group>"; };
 		C45FFE412104C2B000C1462C /* PostsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCollectionCell.swift; sourceTree = "<group>"; };
+		C46DCB7A21094A6A00739F2D /* MovieDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsCell.swift; sourceTree = "<group>"; };
 		C46E8E5221000155009AB829 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -348,6 +350,7 @@
 				C440F1A92103A84300865273 /* PostsCell.swift */,
 				C45FFE412104C2B000C1462C /* PostsCollectionCell.swift */,
 				C42FB7652106CF4F00859EBF /* CommentCell.swift */,
+				C46DCB7A21094A6A00739F2D /* MovieDetailsCell.swift */,
 			);
 			path = postsandComments;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CarbonKit/CarbonKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
@@ -502,6 +506,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CarbonKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
@@ -557,6 +562,7 @@
 				1412D3532084DAFE008BD01B /* SplashScreenViewController.swift in Sources */,
 				142F5DC220968274007E8BB9 /* MovieReviewsTableViewController.swift in Sources */,
 				148AB9E5209616AA00DC22C2 /* TrailerCollectionViewCell.swift in Sources */,
+				C46DCB7B21094A6A00739F2D /* MovieDetailsCell.swift in Sources */,
 				1404FA76208525FB00FB334C /* AllMovies.swift in Sources */,
 				14F7C1962093F54B0030D3AA /* FavoriteMoviesProtocol.swift in Sources */,
 				14F7C1982093F66D0030D3AA /* FavoriteMoviesPresenterProtocol.swift in Sources */,
@@ -742,10 +748,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProject/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -760,10 +763,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProject/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -778,11 +778,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -798,11 +794,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProjectTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProjectTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -817,11 +809,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -836,11 +824,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = MovieProjectUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ITI.MovieProjectUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

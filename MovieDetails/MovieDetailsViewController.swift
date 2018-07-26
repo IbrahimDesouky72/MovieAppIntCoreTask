@@ -61,7 +61,7 @@ class MovieDetailsViewController: UITableViewController , MovieDetailsPrtocol {
         movieImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(named: "animal.png"))
         movieDescription.text = movie.overview
         movieDetailsPresenter?.getMovieTrailers(id: movie.id)
-        print(movie.id)
+        //print(movie.id)
         movieDetailsPresenter?.isFavourite(movieTitle: movie.original_title)
         
         

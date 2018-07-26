@@ -115,7 +115,7 @@ class AllMovies: UICollectionViewController, UICollectionViewDelegateFlowLayout 
         //print(selectedMovie.original_title)
         let detailController  = self.storyboard?.instantiateViewController(withIdentifier: "newDetailsView") as! PostsAndComments 
         
-        //detailController.movie = selectedMovie
+        detailController.movie = selectedMovie
         //print("hhhheeeeeeeeeeee"+String ("ff"))
         
         
