@@ -24,12 +24,11 @@ class SplashScreenViewController: UIViewController {
             animationView.play{ (finished) in
                 animationView.play{ (finished) in
                     animationView.play{ (finished) in
-                        animationView.play{ (finished) in
-                            animationView.play{ (finished) in
+                       
                                 
                                 self.performSegue(withIdentifier: "homePage", sender: self)
-                            }
-                        }
+                        
+                        
                         
                     }
                     
