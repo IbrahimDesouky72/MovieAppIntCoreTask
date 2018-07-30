@@ -113,15 +113,10 @@ class AllMovies: UICollectionViewController, UICollectionViewDelegateFlowLayout 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie : MovieClass = movies[indexPath.row]
         //print(selectedMovie.original_title)
-        let detailController  = self.storyboard?.instantiateViewController(withIdentifier: "newDetailsView") as! PostsAndComments 
+        let detailController  = self.storyboard?.instantiateViewController(withIdentifier: "MyPostsAndComments") as! PostsAndComments
         
         detailController.movie = selectedMovie
-        //print("hhhheeeeeeeeeeee"+String ("ff"))
         
-        
-        //self.navigationController?.pushViewController(detailController, animated: true)
-    
-        //print(self.navigationController)
         
         self.navigationController?.pushViewController(detailController, animated: true)
     }

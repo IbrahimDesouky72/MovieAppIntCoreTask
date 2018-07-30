@@ -9,7 +9,8 @@
 import UIKit
 import Kingfisher
 
-class PostsAndComments: UIViewController , PostsAndCommentsProtocol {
+class PostsAndComments: UIViewController ,UICollectionViewDelegateFlowLayout , PostsAndCommentsProtocol {
+    fileprivate let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     var postsPresenter : PostsAndCommentsPresenterProtocol?
     var movies = [MovieClass]()
     var posts = [Post]()
@@ -26,6 +27,9 @@ class PostsAndComments: UIViewController , PostsAndCommentsProtocol {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        overview.layer.cornerRadius = 15
+        overview.backgroundColor = UIColor(red: 148/255, green: 33/255, blue: 147/255, alpha: 1.0)
+        overview.setTitleColor(.white, for: .normal)
         
         postsPresenter = PostsAndCommentsPresenter (postAndCommentProtocol : self)
         //NetworkCalls().getPosts(url: "https://jsonplaceholder.typicode.com/posts")
@@ -63,6 +67,7 @@ class PostsAndComments: UIViewController , PostsAndCommentsProtocol {
     
     func makeViewRounded(myView : UIView)  {
         myView.layer.cornerRadius = 15
+        myView.layer.masksToBounds = true
         
     }
     
@@ -121,15 +126,22 @@ extension PostsAndComments :UICollectionViewDelegate, UICollectionViewDataSource
             cell.layer.masksToBounds = false
             cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
             
-            cell.postPicture.image = UIImage(named: "animal")
             
+            let imageName = String(indexPath.row % 4)+".jpg"
+            cell.postPicture.image = UIImage(named: imageName )
+            
+            cell.postPicture.layer.cornerRadius = 10.0
+            cell.postPicture.clipsToBounds = true
+            cell.profilePicture.image = UIImage(named: "profile_picture")
+            cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width / 2;
+            cell.profilePicture.clipsToBounds = true;
             return cell
             
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailsCell", for: indexPath) as! MovieDetailsCell
             let url = URL(string: "https://image.tmdb.org/t/p/w500"+movie.poster_path)
             //imageView.kf.setImage(with: url)
-           //cell.filmImage.kf.setImage(with: url)
+            cell.filmImage.kf.setImage(with: url)
             cell.filmName.text = movie.original_title
             cell.filmReleaseDate.text = movie.release_date
             cell.filmDescription.text = movie.overview
@@ -154,6 +166,42 @@ extension PostsAndComments :UICollectionViewDelegate, UICollectionViewDataSource
         
     }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        let paddingSpace = sectionInsets.left 
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth
+        
+        return CGSize(width: widthPerItem, height: widthPerItem+50.0)
+    }
+    
+    //3
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0)
+    }
+    
+    // 4
+    //    func collectionView(_ collectionView: UICollectionView,
+    //                        layout collectionViewLayout: UICollectionViewLayout,
+    //                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    //        return sectionInsets.left
+    //    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        
+        return 0;
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat
+    {
+        
+        return 0;
+    }
+    
     
     
     
@@ -170,6 +218,10 @@ extension PostsAndComments :UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentCell
         cell.comment.text = posts[tableView.tag].comments[indexPath.row].body
+        cell.profilePicture.image = UIImage(named: "profile_picture")
+        cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.width / 2;
+        cell.profilePicture.clipsToBounds = true;
+        
         return cell
     }
     
